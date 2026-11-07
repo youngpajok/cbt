@@ -110,8 +110,12 @@ footer .cr b{color:#C9D3E8}
     <textarea id="body" name="문의내용" placeholder="궁금하신 내용을 자세히 적어 주세요." required></textarea>
    </div>
 
+   <!-- Web3Forms 액세스 키 (web3forms.com 에서 발급받아 아래 value 에 붙여넣기) -->
+   <input type="hidden" name="access_key" value="9c2457ab-30a8-4d20-b251-250b55d61f10">
+   <input type="hidden" name="subject" value="[영파족 CBT] 홈페이지 문의">
+   <input type="hidden" name="from_name" value="영파족 CBT 문의폼">
    <!-- 스팸 방지용 숨김 필드 (사람은 비워 둠) -->
-   <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
+   <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" style="display:none">
 
    <button type="submit" class="submit" id="sendBtn">문의 보내기</button>
    <p class="note">* 표시는 필수 항목입니다. 남겨주신 정보는 답변 용도로만 사용됩니다.</p>
@@ -126,35 +130,37 @@ footer .cr b{color:#C9D3E8}
 
 <script>
 (function(){
- var ENDPOINT='https://formsubmit.co/ajax/youngpajok@naver.com';
+ var ENDPOINT='https://api.web3forms.com/submit';
  var form=document.getElementById('qform');
  var btn=document.getElementById('sendBtn');
  var ok=document.getElementById('msgOk'), err=document.getElementById('msgErr');
  form.addEventListener('submit',function(e){
   e.preventDefault();
   ok.style.display='none'; err.style.display='none';
-  // 허니팟: 봇이 채우면 조용히 무시
-  if(form._honey.value){return;}
+  // 허니팟: 봇이 체크하면 조용히 무시
+  if(form.botcheck && form.botcheck.checked){return;}
+  var key=form.access_key.value;
+  if(!key || key.indexOf('PASTE_YOUR')===0){
+    err.textContent='아직 Web3Forms 액세스 키가 설정되지 않았습니다. 관리자에게 문의해 주세요.';
+    err.style.display='block'; window.scrollTo({top:0,behavior:'smooth'}); return;
+  }
   var name=form['이름'].value.trim(), tel=form['연락처'].value.trim(), body=form['문의내용'].value.trim();
   if(!name||!tel||!body){ err.textContent='이름·연락처·문의 내용은 필수입니다.'; err.style.display='block'; window.scrollTo({top:0,behavior:'smooth'}); return; }
   var fd=new FormData(form);
-  fd.append('_subject','[영파족 CBT 문의] '+form['문의유형'].value+' - '+name);
-  fd.append('_template','table');
-  fd.append('_captcha','false');
   btn.disabled=true; btn.textContent='전송 중…';
   fetch(ENDPOINT,{method:'POST',headers:{'Accept':'application/json'},body:fd})
-   .then(function(r){
-     // 서버가 응답(200 등)을 돌려주면 접수로 간주 — 최초 활성화 단계 포함
-     if(r.ok){ return r.json().catch(function(){return {success:true};}); }
-     throw new Error('http '+r.status);
-   })
+   .then(function(r){ return r.json(); })
    .then(function(d){
-     form.reset();
-     ok.style.display='block'; window.scrollTo({top:0,behavior:'smooth'});
+     if(d && d.success){
+       form.reset();
+       ok.style.display='block'; window.scrollTo({top:0,behavior:'smooth'});
+     } else {
+       err.textContent=(d && d.message) ? ('전송 실패: '+d.message) : '전송 중 문제가 발생했습니다. 잠시 후 다시 시도해 주세요.';
+       err.style.display='block'; window.scrollTo({top:0,behavior:'smooth'});
+     }
    })
    .catch(function(){
-     // 네트워크/CORS 실패(주로 file:// 로 직접 열었거나 오프라인)
-     err.innerHTML='전송에 실패했습니다. <b>이 페이지는 실제 사이트(https://youngpajok.com/contact.html)에 올린 뒤에만 작동</b>합니다. 계속 안 되면 youngpajok@naver.com 으로 보내 주세요.';
+     err.innerHTML='전송에 실패했습니다. 잠시 후 다시 시도하시거나 <b>youngpajok@naver.com</b> 으로 보내 주세요.';
      err.style.display='block'; window.scrollTo({top:0,behavior:'smooth'});
    })
    .then(function(){ btn.disabled=false; btn.textContent='문의 보내기'; });
