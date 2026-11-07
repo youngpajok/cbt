@@ -144,9 +144,27 @@ footer .cr b{color:#C9D3E8}
     err.textContent='아직 Web3Forms 액세스 키가 설정되지 않았습니다. 관리자에게 문의해 주세요.';
     err.style.display='block'; window.scrollTo({top:0,behavior:'smooth'}); return;
   }
-  var name=form['이름'].value.trim(), tel=form['연락처'].value.trim(), body=form['문의내용'].value.trim();
+  var name=document.getElementById('name').value.trim(),
+      tel=document.getElementById('tel').value.trim(),
+      email=document.getElementById('email').value.trim(),
+      cat=document.getElementById('cat').value,
+      body=document.getElementById('body').value.trim();
   if(!name||!tel||!body){ err.textContent='이름·연락처·문의 내용은 필수입니다.'; err.style.display='block'; window.scrollTo({top:0,behavior:'smooth'}); return; }
-  var fd=new FormData(form);
+  // 항목 이름은 영문으로(한글 라벨은 깨짐) + 한글 내용은 message 본문에 정리
+  var fd=new FormData();
+  fd.append('access_key', key);
+  fd.append('subject', '[영파족 CBT 문의] '+cat+' - '+name);
+  fd.append('from_name', '영파족 CBT 문의폼');
+  fd.append('name', name);
+  fd.append('email', email || 'noreply@youngpajok.com');
+  fd.append('message',
+    '[영파족 CBT 홈페이지 문의]\n\n'+
+    '· 이름: '+name+'\n'+
+    '· 연락처: '+tel+'\n'+
+    '· 이메일: '+(email||'(미입력)')+'\n'+
+    '· 문의유형: '+cat+'\n'+
+    '----------------------------------------\n'+
+    body+'\n');
   btn.disabled=true; btn.textContent='전송 중…';
   fetch(ENDPOINT,{method:'POST',headers:{'Accept':'application/json'},body:fd})
    .then(function(r){ return r.json(); })
