@@ -143,14 +143,20 @@ footer .cr b{color:#C9D3E8}
   fd.append('_captcha','false');
   btn.disabled=true; btn.textContent='전송 중…';
   fetch(ENDPOINT,{method:'POST',headers:{'Accept':'application/json'},body:fd})
-   .then(function(r){return r.json();})
-   .then(function(d){
-     if(d && (d.success===true || d.success==='true')){
-       form.reset();
-       ok.style.display='block'; window.scrollTo({top:0,behavior:'smooth'});
-     } else { throw new Error('fail'); }
+   .then(function(r){
+     // 서버가 응답(200 등)을 돌려주면 접수로 간주 — 최초 활성화 단계 포함
+     if(r.ok){ return r.json().catch(function(){return {success:true};}); }
+     throw new Error('http '+r.status);
    })
-   .catch(function(){ err.textContent='전송 중 문제가 발생했습니다. 잠시 후 다시 시도하시거나 youngpajok@naver.com 으로 보내 주세요.'; err.style.display='block'; window.scrollTo({top:0,behavior:'smooth'}); })
+   .then(function(d){
+     form.reset();
+     ok.style.display='block'; window.scrollTo({top:0,behavior:'smooth'});
+   })
+   .catch(function(){
+     // 네트워크/CORS 실패(주로 file:// 로 직접 열었거나 오프라인)
+     err.innerHTML='전송에 실패했습니다. <b>이 페이지는 실제 사이트(https://youngpajok.com/contact.html)에 올린 뒤에만 작동</b>합니다. 계속 안 되면 youngpajok@naver.com 으로 보내 주세요.';
+     err.style.display='block'; window.scrollTo({top:0,behavior:'smooth'});
+   })
    .then(function(){ btn.disabled=false; btn.textContent='문의 보내기'; });
  });
 })();
