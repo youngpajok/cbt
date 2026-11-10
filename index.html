@@ -67,7 +67,7 @@ a{text-decoration:none;color:inherit}
 .card .meta{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:1.5rem}
 .card .meta span{background:var(--bg);border:1px solid var(--line);color:var(--txt);font-size:.75rem;font-weight:700;padding:.3rem .6rem;border-radius:8px}
 .card .go{margin-top:auto;display:inline-flex;align-items:center;justify-content:center;gap:.4rem;background:linear-gradient(135deg,#FBE7A6 0%,#F2C94C 45%,#D9A53A 100%);color:var(--navy-d);font-weight:900;font-size:1rem;padding:.85rem;border-radius:12px;box-shadow:inset 0 1px 0 rgba(255,255,255,.6);transition:filter .15s;position:relative;overflow:hidden}
-.card:not(.soon) .go::after{content:"";position:absolute;top:0;left:-65%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.75),transparent);transform:skewX(-22deg);animation:sweep 4.8s ease-in-out infinite;pointer-events:none}
+.card:not(.soon) .go::after{content:"";position:absolute;top:-20%;left:-75%;width:55%;height:140%;background:linear-gradient(100deg,transparent 15%,rgba(255,255,255,.98) 50%,transparent 85%);transform:skewX(-20deg);animation:sweep 3.8s ease-in-out infinite;pointer-events:none}
 .card:hover .go{filter:brightness(1.04)}
 .card.soon{opacity:.66;border-style:dashed;box-shadow:none}
 .card.soon::before{display:none}
