@@ -39,6 +39,8 @@ a{text-decoration:none;color:inherit}
 .btn:hover{border-color:var(--gold-d)}
 .btn.gold{background:linear-gradient(180deg,#F6D15E,#E9B838);color:var(--navy-d);border:none;box-shadow:0 6px 16px rgba(233,184,56,.32)}
 .btn.ghost{background:transparent;color:var(--sub);border-color:var(--line)}
+.btn.danger{background:#fff;color:#C0392B;border-color:#E6B0AA}
+.btn.danger:hover{background:#FDEDEC;border-color:#C0392B}
 /* list */
 .board{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 8px 24px rgba(14,39,86,.05)}
 .hrow,.row{display:grid;grid-template-columns:52px 1fr 92px 64px 78px;align-items:center}
@@ -177,7 +179,8 @@ footer .cr b{color:#C9D3E8}
    <div class="field"><textarea id="aBody" placeholder="답변 내용을 입력하세요."></textarea></div>
    <button class="btn gold" id="aSubmit" style="width:100%">답변 등록</button>
   </div>
-  <div class="mbtns" style="margin-top:1rem"><button class="btn ghost" data-close style="flex:1">닫기</button></div>
+  <div class="mmsg" id="dMsg"></div>
+  <div class="mbtns" style="margin-top:1rem"><button class="btn ghost" data-close style="flex:1">닫기</button><button class="btn danger" id="dSubmit" style="flex:1">🗑 글 삭제</button></div>
  </div>
 </div></div>
 
@@ -284,6 +287,20 @@ footer .cr b{color:#C9D3E8}
      else { msg($('aMsg'),'err',d.error||'등록에 실패했습니다.'); }
    }).catch(function(){ msg($('aMsg'),'err','전송에 실패했습니다. 잠시 후 다시 시도해 주세요.'); })
    .then(function(){ btn.disabled=false; btn.textContent='답변 등록'; });
+ });
+
+ /* 글 삭제 (작성자 본인 비번 또는 관리자 비번 — 열람 시 입력한 비번 재사용) */
+ $('dSubmit').addEventListener('click',function(){
+  hide($('dMsg'));
+  if(!confirm('이 글을 삭제하시겠습니까?\n삭제한 글은 복구할 수 없습니다.')) return;
+  var pw=$('vPw').value;
+  var btn=$('dSubmit'); btn.disabled=true; btn.innerHTML='<span class="spin"></span>';
+  fetch(API,{method:'POST',body:JSON.stringify({action:'delete',id:curId,password:pw})})
+   .then(function(r){return r.json();}).then(function(d){
+     if(d.ok){ closeM('mView'); loadList(); }
+     else { msg($('dMsg'),'err',d.error||'삭제에 실패했습니다.'); }
+   }).catch(function(){ msg($('dMsg'),'err','전송에 실패했습니다. 잠시 후 다시 시도해 주세요.'); })
+   .then(function(){ btn.disabled=false; btn.textContent='🗑 글 삭제'; });
  });
 
  $('refreshBtn').addEventListener('click',loadList);
