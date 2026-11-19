@@ -305,25 +305,30 @@ footer .contact a:hover{color:var(--gold);border-color:var(--gold)}
   el.querySelector('.vc').textContent = total.toLocaleString('ko-KR');
   el.style.display='';
  }
- // 기본(서비스 전/실패 시)
- show(FLOOR, ANCHOR_TOT);
 
  // KST 날짜 키(yyyymmdd) — 0시가 지나면 키가 바뀌어 일일이 305부터 다시 시작
  var kd;
  try{ kd=new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Seoul'}).replace(/-/g,''); }
  catch(e){ kd=''+new Date().getFullYear()+new Date().getMonth()+new Date().getDate(); }
- var dayKey='d'+kd, totKey='total';
+ var dayKey='d'+kd, totKey='total', ckey='yp_cnt_'+kd;
  var sflag='yp_hit_'+kd;
  var once=false; try{ once=!sessionStorage.getItem(sflag); }catch(e){ once=true; }
  var verb=once?'hit':'get';          // 세션 첫 방문만 +1, 이후엔 조회만
+ var shown=false;
+ // 직전에 저장해 둔 '오늘' 카운트를 먼저 표시 → 새로고침 시 305가 깜빡이지 않음
+ try{ var cv=JSON.parse(localStorage.getItem(ckey)||'null'); if(cv&&cv.today!=null){ show(cv.today, cv.total); shown=true; } }catch(e){}
+ // 응답이 늦으면(최대 2.5초) 그때 기본값으로 표시(그날 첫 방문·저장값 없을 때만)
+ var fb=setTimeout(function(){ if(!shown){ show(FLOOR, ANCHOR_TOT); shown=true; } }, 2500);
  function api(k){ return fetch('https://abacus.jasoncameron.dev/'+verb+'/'+NS+'/'+k).then(function(r){return r.json();}); }
  try{
   Promise.all([api(totKey), api(dayKey)]).then(function(res){
     var t=(res[0]&&res[0].value)||0, d=(res[1]&&res[1].value)||0;
+    clearTimeout(fb); shown=true;
     show(FLOOR + d, ANCHOR_TOT + t);
+    try{ localStorage.setItem(ckey, JSON.stringify({today:FLOOR+d, total:ANCHOR_TOT+t})); }catch(e){}
     try{ if(once) sessionStorage.setItem(sflag,'1'); }catch(e){}
-  }).catch(function(){ /* 실패 시 기본값 유지 */ });
- }catch(e){}
+  }).catch(function(){ clearTimeout(fb); if(!shown){ show(FLOOR, ANCHOR_TOT); shown=true; } });
+ }catch(e){ clearTimeout(fb); if(!shown){ show(FLOOR, ANCHOR_TOT); } }
 })();
 </script>
 </body>
