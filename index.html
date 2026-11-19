@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>영파족 - 전산세무2급 요점정리·전산회계1급 요점정리</title>
-<meta name="description" content="전산세무2급 요점정리, 전산회계1급 요점정리, 무료 CBT, 컴활 1급/2급·정보처리기사·프로그래밍기능사 필기/실기 요점정리, 20년 경력 이진수 교수 단기합격 자료">
-<meta name="keywords" content="전산세무2급 요점정리,전산회계1급 요점정리,전산세무2급 CBT,전산회계1급 CBT,컴활 요점정리,컴퓨터활용능력 요점정리,정보처리기사 요점정리,프로그래밍기능사 요점정리,영파족,전산세무회계,무료 CBT,기출문제,모의고사,이진수">
+<meta name="description" content="전산세무2급 요점정리, 전산회계1급 요점정리, 무료 CBT, 컴활 1급·2급·프로그래밍기능사 필기/실기 요점정리, 20년 경력 이진수 교수 단기합격 자료">
+<meta name="keywords" content="전산세무2급 요점정리,전산회계1급 요점정리,전산세무2급 CBT,전산회계1급 CBT,컴활 요점정리,컴퓨터활용능력 요점정리,프로그래밍기능사 요점정리,영파족,전산세무회계,무료 CBT,기출문제,모의고사,이진수">
 <link rel="canonical" href="https://cbt.youngpajok.com/">
 <!-- 네이버 소유확인: 서치어드바이저에서 받은 메타태그를 아래 줄에 붙여넣으세요 -->
 <!-- <meta name="naver-site-verification" content="여기에_확인코드"> -->
 <meta property="og:type" content="website">
 <meta property="og:title" content="영파족 - 전산세무2급 요점정리·전산회계1급 요점정리">
-<meta property="og:description" content="전산세무2급·전산회계1급 요점정리 교재와 무료 CBT 모의고사. 컴활·정보처리기사·프로그래밍기능사 요점정리까지. 20년 경력 이진수 교수.">
+<meta property="og:description" content="전산세무2급·전산회계1급 요점정리 교재와 무료 CBT 모의고사. 컴활·프로그래밍기능사 요점정리까지. 20년 경력 이진수 교수.">
 <meta property="og:url" content="https://cbt.youngpajok.com/">
 <meta property="og:image" content="https://cbt.youngpajok.com/og.png">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
@@ -55,6 +55,18 @@ a{text-decoration:none;color:inherit}
 .sec-h .k{color:var(--gold-d);font-weight:900;font-size:.76rem;letter-spacing:.14em}
 .sec-h h2{font-weight:900;font-size:1.35rem;color:var(--navy-d);letter-spacing:-.02em}
 .sec-h span{color:var(--sub);font-size:.84rem;margin-left:auto}
+/* 교재 링크 버튼 (하단 CTA 스타일 · 기출 버튼과 같은 높이) */
+.bookrow{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:1.2rem}
+.bookcell{padding:0 1.6rem}
+.bookbtn{width:100%;min-height:57px;box-sizing:border-box;position:relative;overflow:hidden;display:flex;align-items:center;gap:.6rem;background:linear-gradient(135deg,#FBE7A6 0%,#F2C94C 45%,#D9A53A 100%);color:var(--navy-d);border-radius:12px;padding:.78rem .7rem;text-decoration:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.6),0 4px 14px rgba(0,0,0,.16);transition:transform .15s,box-shadow .15s}
+.bookbtn:hover{transform:translateY(-2px);box-shadow:inset 0 1px 0 rgba(255,255,255,.65),0 10px 22px rgba(0,0,0,.24)}
+.bookbtn::after{content:"";position:absolute;top:-20%;left:-75%;width:55%;height:140%;background:linear-gradient(100deg,transparent 15%,rgba(255,255,255,.98) 50%,transparent 85%);transform:skewX(-20deg);animation:sweep 3.8s ease-in-out infinite;pointer-events:none}
+.bookbtn .bi{width:2rem;height:2rem;border-radius:8px;background:var(--navy-d);color:var(--gold);display:flex;align-items:center;justify-content:center;flex:none}
+.bookbtn .bi svg{width:1.05rem;height:1.05rem}
+.bookbtn .bt{display:flex;flex-direction:column;line-height:1.18;text-align:left;flex:1;min-width:0}
+.bookbtn .bt small{font-size:.6rem;font-weight:800;letter-spacing:.03em;color:#6A4A0C}
+.bookbtn .bt b{font-size:.9rem;font-weight:900;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bookbtn .ba{font-size:.72rem;font-weight:900;padding:.26rem .5rem;border-radius:999px;background:var(--navy-d);color:var(--gold);white-space:nowrap;flex:none}
 /* cards */
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
 .card{position:relative;display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:1.7rem 1.6rem;box-shadow:0 2px 16px rgba(23,60,124,.05);transition:transform .18s,box-shadow .18s,border-color .18s;overflow:hidden}
@@ -102,7 +114,7 @@ a{text-decoration:none;color:inherit}
 .buy::after,.yt::after{content:"";position:absolute;top:0;left:-65%;width:48%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-22deg);animation:sweep 4.8s ease-in-out infinite;pointer-events:none}
 .yt::after{background:linear-gradient(100deg,transparent,rgba(255,255,255,.3),transparent)}
 @keyframes sweep{0%,100%{left:-65%}16%{left:150%}60%{left:150%}}
-@media(prefers-reduced-motion:reduce){.buy::after,.yt::after,.card .go::after{animation:none;display:none}}
+@media(prefers-reduced-motion:reduce){.buy::after,.yt::after,.card .go::after,.bookbtn::after{animation:none;display:none}}
 /* footer */
 footer{background:var(--navy-d);text-align:center;color:#8E9ABB;font-size:.78rem;padding-block:1.8rem;border-top:1px solid rgba(255,255,255,.08)}
 footer .fnav{display:flex;gap:1.3rem;justify-content:center;flex-wrap:wrap;margin-bottom:.8rem}
@@ -135,6 +147,7 @@ footer .contact a:hover{color:var(--gold);border-color:var(--gold)}
  .hero .char{position:absolute;right:-6px;bottom:0;width:120px;opacity:.95}
  .hx{padding-right:108px}
  .grid{grid-template-columns:1fr}
+ .bookrow{grid-template-columns:1fr}
  .sec{padding-block:2.2rem}
  .close .cline1{font-size:1.4rem}
  .close .ctas{grid-template-columns:1fr}
@@ -207,22 +220,37 @@ footer .contact a:hover{color:var(--gold);border-color:var(--gold)}
  </section>
 
  <section class="sec" style="padding-top:0">
-  <div class="sec-h"><span class="k">COMING SOON</span><h2>곧 찾아옵니다</h2></div>
+  <div class="sec-h"><span class="k">CBT · 컴활</span><h2>컴퓨터활용능력 기출 CBT</h2><span>무료 · 윈도우11 · 최신 개편 반영</span></div>
   <div class="grid">
-   <div class="card soon">
-    <span class="tag">준비 중</span><h3>컴퓨터활용능력</h3>
-    <div class="desc">1급 · 2급 핵심 요점 &amp; 실기 프로시저</div>
-    <div class="meta"><span>Coming soon</span></div>
-    <span class="go">준비 중입니다</span>
-   </div>
-   <div class="card soon">
-    <span class="tag">준비 중</span><h3>정보처리기사</h3>
-    <div class="desc">필기 기출 CBT 모의고사</div>
-    <div class="meta"><span>Coming soon</span></div>
-    <span class="go">준비 중입니다</span>
-   </div>
+   <a class="card" href="comphwal1.html">
+    <span class="tag">국가기술자격</span>
+    <h3>컴퓨터활용능력 1급</h3>
+    <div class="desc">컴퓨터일반 · 스프레드시트 · 데이터베이스(액세스)</div>
+    <div class="meta"><span>10회차</span><span>600문항</span><span>2027 개정 반영</span></div>
+    <span class="go">기출 모의고사 시작 →</span>
+   </a>
+   <a class="card" href="comphwal2.html">
+    <span class="tag">국가기술자격</span>
+    <h3>컴퓨터활용능력 2급</h3>
+    <div class="desc">컴퓨터일반 · 스프레드시트</div>
+    <div class="meta"><span>15회차</span><span>600문항</span><span>2027 개정 반영</span></div>
+    <span class="go">기출 모의고사 시작 →</span>
+   </a>
+  </div>
+  <div class="bookrow">
+   <div class="bookcell"><a class="bookbtn" href="https://kmong.com/self-marketing/794043/RtNSVbwnBf" target="_blank" rel="noopener">
+    <span class="bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/><path d="M9 8h7M9 11.5h5"/></svg></span>
+    <span class="bt"><small>영파족 STUDY 공식 교재</small><b>컴활 1급 요점정리 교재</b></span>
+    <span class="ba">구입하기 →</span>
+   </a></div>
+   <div class="bookcell"><a class="bookbtn" href="https://kmong.com/self-marketing/802238/TuOFsmV5I3" target="_blank" rel="noopener">
+    <span class="bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/><path d="M9 8h7M9 11.5h5"/></svg></span>
+    <span class="bt"><small>영파족 STUDY 공식 교재</small><b>컴활 2급 요점정리 교재</b></span>
+    <span class="ba">구입하기 →</span>
+   </a></div>
   </div>
  </section>
+
 </main>
 
 <section class="close"><div class="wrap">
@@ -242,27 +270,39 @@ footer .contact a:hover{color:var(--gold);border-color:var(--gold)}
 </footer>
 <script>
 (function(){
- var NS='youngpajok-cbt', BASE=19900, DAYBASE=305;
  var el=document.getElementById('visit'); if(!el) return;
- var A='https://abacus.jasoncameron.dev';
- // '오늘' 키를 한국시간(KST) 날짜로 고정 → 매일 KST 자정에 바뀜(방문자 시간대 무관)
- var today='d'+new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Seoul'}).replace(/-/g,'');
- var once=true; try{once=!sessionStorage.getItem('yp_vc');}catch(e){}
- var verb=once?'hit':'get';
- function show(total,day){
-  el.querySelector('.vt').textContent=day.toLocaleString('ko-KR');
-  el.querySelector('.vc').textContent=total.toLocaleString('ko-KR');
+ /* ===== 방문자 수 설정 (원하는 값만 바꾸세요) =====
+    · 외부 서비스 없이 시간(KST) 기준으로 스스로 올라갑니다 — 멈추지 않음.
+    · 일일: 매일 0시 FLOOR(305)로 리셋 → 하루 동안 1씩 증가(305,306,307…).
+    · 누적: 리셋 없음. 일일과 '같은 틱'으로 +1 → 하루가 지나면 정확히 +PER_DAY(305) 적립. */
+ var ANCHOR_Y=2026, ANCHOR_M=11, ANCHOR_D=19;  // 기준일: 2026-11-19 (0시 KST)
+ var ANCHOR_TOT = 23000;                        // 기준일 0시의 누적 방문
+ var PER_DAY    = 305;                          // 하루 방문 수(=일일 증가량=누적 하루 적립량)
+ var FLOOR      = 305;                           // 일일 방문 0시 시작값
+ /* ================================================= */
+
+ // KST 벽시계 기준 Date (연·월·일·시 필드가 한국시간)
+ function kstDate(){
+  try{ return new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Seoul'})); }
+  catch(e){ return new Date(); }
+ }
+ var anchorMid = new Date(ANCHOR_Y, ANCHOR_M-1, ANCHOR_D, 0,0,0,0);
+ function render(){
+  var d = kstDate();
+  var mid = new Date(d); mid.setHours(0,0,0,0);                // 오늘(KST) 0시
+  var frac = (d - mid) / 86400000;                             // 오늘 경과 비율 0~1
+  if(frac<0) frac=0; if(frac>1) frac=1;
+  var fullDays = Math.floor((mid - anchorMid) / 86400000);     // 기준일로부터 지난 '완전한' 일수
+  if(fullDays<0) fullDays=0;
+  var intra = Math.floor(PER_DAY * frac);                      // 오늘 들어온 수 0~(PER_DAY-1)
+  var today = FLOOR + intra;                                   // 일일: 305 → 609, 0시마다 리셋
+  var total = ANCHOR_TOT + fullDays*PER_DAY + intra;           // 누적: 리셋 없이 +1, 하루 +305
+  el.querySelector('.vt').textContent = today.toLocaleString('ko-KR');
+  el.querySelector('.vc').textContent = total.toLocaleString('ko-KR');
   el.style.display='';
  }
- Promise.all([
-  fetch(A+'/'+verb+'/'+NS+'/total').then(function(r){return r.json();}),
-  fetch(A+'/'+verb+'/'+NS+'/'+today).then(function(r){return r.json();})
- ]).then(function(res){
-  try{if(once)sessionStorage.setItem('yp_vc','1');}catch(e){}
-  var total=((res[0]&&res[0].value)||0)+BASE;
-  var day=DAYBASE+((res[1]&&res[1].value)||0);   // 오늘 = 305 + 실제 접속수
-  show(total,day);
- }).catch(function(){ show(BASE,DAYBASE); });      // 오류 시에도 숨기지 않고 기본값 표시
+ render();
+ setInterval(render, 20000);  // 열어둔 동안에도 틱 반영(약 4.7분마다 +1)
 })();
 </script>
 </body>
