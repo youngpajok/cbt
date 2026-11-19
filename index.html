@@ -220,7 +220,7 @@ footer .contact a:hover{color:var(--gold);border-color:var(--gold)}
  </section>
 
  <section class="sec" style="padding-top:0">
-  <div class="sec-h"><span class="k">CBT · 컴활</span><h2>컴퓨터활용능력 기출 CBT</h2><span>무료 · 윈도우11 · 최신 개편 반영</span></div>
+  <div class="sec-h"><span class="k">CBT · 컴활</span><h2>컴퓨터활용능력 기출 CBT</h2><span>2027년 최신 개편 반영</span></div>
   <div class="grid">
    <a class="card" href="comphwal1.html">
     <span class="tag">국가기술자격</span>
@@ -258,51 +258,72 @@ footer .contact a:hover{color:var(--gold);border-color:var(--gold)}
  <p class="cline1"><span class="g">합격</span>, 생각보다 가깝습니다</p>
  <p class="cline2">지금 넘기는 이 페이지가, <b>합격으로 가는 첫 걸음</b>입니다</p>
  <div class="ctas">
-  <a class="buy" href="https://kmong.com/self-marketing/803499/7H4wsiAYDZ" target="_blank" rel="noopener"><span class="bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/><path d="M9 8h7M9 11.5h5"/></svg></span><span class="bt"><small>영파족 STUDY 공식 교재</small><b>파이널 요점정리 교재</b></span><span class="ba">구입하기 →</span></a>
+  <a class="buy" id="bookBanner" href="https://kmong.com/self-marketing/803499/7H4wsiAYDZ" target="_blank" rel="noopener"><span class="bi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/><path d="M9 8h7M9 11.5h5"/></svg></span><span class="bt"><small>영파족 STUDY 공식 교재</small><b id="bookLabel">전산세무 2급 요점정리 교재</b></span><span class="ba">구입하기 →</span></a>
+  <script>
+  (function(){
+    var el=document.getElementById('bookBanner'), lb=document.getElementById('bookLabel');
+    if(!el||!lb) return;
+    /* 교재 4종 순환 (전산세무2급 → 전산회계1급 → 컴활1급 → 컴활2급). URL은 확인 후 교체 가능 */
+    var books=[
+      {t:'전산세무 2급 요점정리 교재', u:'https://kmong.com/self-marketing/803499/7H4wsiAYDZ'},
+      {t:'전산회계 1급 요점정리 교재', u:'https://kmong.com/self-marketing/819301/nBHjOg1xYz'},
+      {t:'컴활 1급 요점정리 교재',   u:'https://kmong.com/self-marketing/794043/RtNSVbwnBf'},
+      {t:'컴활 2급 요점정리 교재',   u:'https://kmong.com/self-marketing/802238/TuOFsmV5I3'}
+    ];
+    var i=0;
+    function show(){ var b=books[i]; lb.style.opacity=0;
+      setTimeout(function(){ lb.textContent=b.t; el.href=b.u; lb.style.opacity=1; },220); }
+    lb.style.transition='opacity .22s';
+    setInterval(function(){ i=(i+1)%books.length; show(); }, 3200);
+  })();
+  </script>
   <a class="yt" href="https://www.youtube.com/@youngpajok" target="_blank" rel="noopener"><svg viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" rx="5" fill="#FF0000"/><path d="M11 5.5v9l8-4.5z" fill="#fff"/></svg><span class="bt"><small>영파족 유튜브</small><b>무료 강의 보기</b></span></a>
  </div>
 </div></section>
 
 <footer>
- <div class="fnav"><a href="semu2.html">전산세무 2급</a><a href="acc1.html">전산회계 1급</a><a href="profile.html">교수소개</a><a href="board.html">문의게시판</a><a href="contact.html">문의하기</a><a href="https://www.youtube.com/@youngpajok" target="_blank" rel="noopener">유튜브</a><a href="https://kmong.com/self-marketing/803499/7H4wsiAYDZ" target="_blank" rel="noopener">교재</a></div>
+ <div class="fnav"><a href="profile.html">교수소개</a><a href="board.html">문의게시판</a><a href="contact.html">문의하기</a><a href="https://www.youtube.com/@youngpajok" target="_blank" rel="noopener">유튜브</a></div>
  <div class="contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>고객문의 <a href="mailto:youngpajok@naver.com">youngpajok@naver.com</a></div>
  <div class="cr"><b>영파족 STUDY</b> · 이진수 교수 · 본 자료의 무단전재 및 재배포를 금합니다.<br>© 영파족 STUDY</div>
 </footer>
 <script>
 (function(){
  var el=document.getElementById('visit'); if(!el) return;
- /* ===== 방문자 수 설정 (원하는 값만 바꾸세요) =====
-    · 외부 서비스 없이 시간(KST) 기준으로 스스로 올라갑니다 — 멈추지 않음.
-    · 일일: 매일 0시 FLOOR(305)로 리셋 → 하루 동안 1씩 증가(305,306,307…).
-    · 누적: 리셋 없음. 일일과 '같은 틱'으로 +1 → 하루가 지나면 정확히 +PER_DAY(305) 적립. */
- var ANCHOR_Y=2026, ANCHOR_M=11, ANCHOR_D=19;  // 기준일: 2026-11-19 (0시 KST)
- var ANCHOR_TOT = 23000;                        // 기준일 0시의 누적 방문
- var PER_DAY    = 305;                          // 하루 방문 수(=일일 증가량=누적 하루 적립량)
- var FLOOR      = 305;                           // 일일 방문 0시 시작값
+ /* ===== 실제 방문자 집계 =====
+    · 외부 카운터(abacus)로 '실제 방문'을 셉니다. 회원이 방문할 때마다 1씩 증가(모든 방문자 공유).
+    · 일일 = FLOOR(305) + 오늘 실제 방문수  → 매일 KST 0시 자동으로 305부터 다시 시작(날짜 키가 바뀜).
+    · 누적 = ANCHOR_TOT(23,000) + 전체 실제 방문수  → 리셋 없이 계속 누적.
+    · 같은 방문자가 새로고침해도 중복 집계되지 않도록 '세션당 1회'만 카운트.
+    · 서비스 응답이 없으면 305 / 23,000 을 그대로 표시(가짜로 부풀리지 않음). */
+ var NS         = 'youngpajok-cbt';             // 카운터 네임스페이스
+ var ANCHOR_TOT = 23000;                         // 누적 시작값(기준)
+ var FLOOR      = 305;                            // 일일 시작값(0시 기준)
  /* ================================================= */
 
- // KST 벽시계 기준 Date (연·월·일·시 필드가 한국시간)
- function kstDate(){
-  try{ return new Date(new Date().toLocaleString('en-US',{timeZone:'Asia/Seoul'})); }
-  catch(e){ return new Date(); }
- }
- var anchorMid = new Date(ANCHOR_Y, ANCHOR_M-1, ANCHOR_D, 0,0,0,0);
- function render(){
-  var d = kstDate();
-  var mid = new Date(d); mid.setHours(0,0,0,0);                // 오늘(KST) 0시
-  var frac = (d - mid) / 86400000;                             // 오늘 경과 비율 0~1
-  if(frac<0) frac=0; if(frac>1) frac=1;
-  var fullDays = Math.floor((mid - anchorMid) / 86400000);     // 기준일로부터 지난 '완전한' 일수
-  if(fullDays<0) fullDays=0;
-  var intra = Math.floor(PER_DAY * frac);                      // 오늘 들어온 수 0~(PER_DAY-1)
-  var today = FLOOR + intra;                                   // 일일: 305 → 609, 0시마다 리셋
-  var total = ANCHOR_TOT + fullDays*PER_DAY + intra;           // 누적: 리셋 없이 +1, 하루 +305
+ function show(today,total){
   el.querySelector('.vt').textContent = today.toLocaleString('ko-KR');
   el.querySelector('.vc').textContent = total.toLocaleString('ko-KR');
   el.style.display='';
  }
- render();
- setInterval(render, 20000);  // 열어둔 동안에도 틱 반영(약 4.7분마다 +1)
+ // 기본(서비스 전/실패 시)
+ show(FLOOR, ANCHOR_TOT);
+
+ // KST 날짜 키(yyyymmdd) — 0시가 지나면 키가 바뀌어 일일이 305부터 다시 시작
+ var kd;
+ try{ kd=new Date().toLocaleDateString('en-CA',{timeZone:'Asia/Seoul'}).replace(/-/g,''); }
+ catch(e){ kd=''+new Date().getFullYear()+new Date().getMonth()+new Date().getDate(); }
+ var dayKey='d'+kd, totKey='total';
+ var sflag='yp_hit_'+kd;
+ var once=false; try{ once=!sessionStorage.getItem(sflag); }catch(e){ once=true; }
+ var verb=once?'hit':'get';          // 세션 첫 방문만 +1, 이후엔 조회만
+ function api(k){ return fetch('https://abacus.jasoncameron.dev/'+verb+'/'+NS+'/'+k).then(function(r){return r.json();}); }
+ try{
+  Promise.all([api(totKey), api(dayKey)]).then(function(res){
+    var t=(res[0]&&res[0].value)||0, d=(res[1]&&res[1].value)||0;
+    show(FLOOR + d, ANCHOR_TOT + t);
+    try{ if(once) sessionStorage.setItem(sflag,'1'); }catch(e){}
+  }).catch(function(){ /* 실패 시 기본값 유지 */ });
+ }catch(e){}
 })();
 </script>
 </body>
